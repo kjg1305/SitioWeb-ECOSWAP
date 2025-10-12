@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mis Intercambios | EcoSwap 🌱</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+  <style>
+    body {
+      background: linear-gradient(135deg, #e0f7fa 0%, #c8e6c9 100%);
+      min-height: 100vh;
+    }
+    .footer {
+      background: #388e3c;
+      color: #fff;
+      padding: 2rem 0 1rem 0;
+      margin-top: 3rem;
+    }
+    .footer a { color: #fff; text-decoration: underline; }
+    .navbar-brand {
+      font-weight: bold;
+      font-size: 1.5rem;
+      letter-spacing: 1px;
+    }
+    .card-intercambio {
+      border-radius: 1rem;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+      margin-bottom: 2rem;
+      background: #fff;
+      transition: transform 0.12s, opacity 0.3s;
+      opacity: 1;
+      position: relative;
+    }
+    .card-intercambio:hover {
+      transform: translateY(-5px) scale(1.025);
+      box-shadow: 0 8px 24px rgba(0,150,136,0.14);
+    }
+    .intercambio-img {
+      object-fit: cover;
+      height: 170px;
+      border-radius: 1rem 1rem 0 0;
+      width: 100%;
+      transition: transform 0.25s;
+    }
+    .card-intercambio:hover .intercambio-img {
+      transform: scale(1.07);
+    }
+    .badge-pendiente { background: #ffc107; color: #735f00; }
+    .badge-completado { background: #388e3c; color: #fff; }
+    .badge-proceso { background: #1976d2; color: #fff; }
+    .btn-action { margin-right: 0.6rem; transition: transform 0.15s, filter 0.15s; }
+    .btn-action:active { transform: scale(0.94); filter: brightness(0.97); }
+    .section-title { font-weight: 600; letter-spacing: 1px; margin-bottom: 2rem; color: #388e3c; }
+    /* Modal bounce animation */
+    .modal .modal-dialog .modal-content { animation: bounceIn .28s; }
+    @keyframes bounceIn { 0%{transform:scale(0.8);}60%{transform:scale(1.07);}80%{transform:scale(0.98);}100%{transform:scale(1);} }
+    .fade-out { opacity: 0 !important; transition: opacity 0.30s; }
+    @media (max-width: 576px) { .intercambio-img { height: 140px; } }
+  </style>
+</head>
+<body>
+  <!-- Navbar universal -->
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">EcoSwap 🌱</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+            data-bs-target="#navbarNav" aria-controls="navbarNav"
+            aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="menuDropdown"
+             role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Menú
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="menuDropdown">
+            <li><a class="dropdown-item" href="publicarObjetos.html">Publicar objetos</a></li>
+            <li><a class="dropdown-item" href="misintercambios.html">Mis intercambios</a></li>
+            <li><a class="dropdown-item" href="marketplace.html">Coincidencias</a></li>
+          </ul>
+        </li>
+        <li class="nav-item"><a class="nav-link" href="contacto.html">Contacto</a></li>
+        <li class="nav-item"><a class="nav-link" href="registro.html">Crear Cuenta</a></li>
+        <li class="nav-item"><a class="nav-link" href="login.html">Iniciar Sesión</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+  <!-- Intercambios dinámicos -->
+  <section class="container py-4">
+    <h2 class="section-title">Tus intercambios</h2>
+    <div class="row" id="listaIntercambios"></div>
+  </section>
+
+  <!-- Modal: Ver detalles -->
+  <div class="modal fade" id="modalDetallesInt" tabindex="-1" aria-labelledby="modalDetallesIntLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalDetallesIntLabel">Detalles del Intercambio</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+        </div>
+        <div class="modal-body" id="detallesIntBody"> </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Modal: Enviar mensaje -->
+  <div class="modal fade" id="modalIntMsg" tabindex="-1" aria-labelledby="modalIntMsgLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <form id="msgForm" autocomplete="off">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modalIntMsgLabel">Enviar mensaje</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+          </div>
+          <div class="modal-body">
+            <div class="mb-3"><textarea class="form-control" id="mensajeIntercambio" rows="3" placeholder="Mensaje..."></textarea></div>
+            <div class="alert alert-success mt-3 d-none" id="msgEnviado">¡Mensaje enviado!</div>
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-success w-100">Enviar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <!-- Modal: Confirmación acción -->
+  <div class="modal fade" id="modalConfirm" tabindex="-1" aria-labelledby="modalConfirmLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalConfirmLabel"></h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+        </div>
+        <div class="modal-body" id="modalConfirmBody"></div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-success" id="confirmBtn">Confirmar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+<footer class="footer mt-auto">
+  <div class="container text-center">
+    <div class="mb-2">
+      <a href="acerca.html">Acerca de</a> | <a href="contacto.html">Contacto</a> | <a href="politica.html">Política de uso</a>
+    </div>
+    <div>© 2025 EcoSwap. Intercambio sostenible para un futuro mejor.</div>
+  </div>
+</footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+const intercambios = [
+  {
+    nombre: "Cafetera Manual",
+    estado: "pendiente",
+    imagen: "https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=400&q=80",
+    detalles: "A la espera de confirmación del otro usuario.",
+    otro: "Juan Martínez"
+  },
+  {
+    nombre: "Patines Inline",
+    estado: "proceso",
+    imagen: "https://images.unsplash.com/photo-1503602642458-232111445657?auto=format&fit=crop&w=400&q=80",
+    detalles: "Coordinando la entrega con la otra persona.",
+    otro: "Sofía Pérez"
+  },
+  {
+    nombre: "Set de Cocina",
+    estado: "completado",
+    imagen: "https://images.unsplash.com/photo-1454023492550-5696f8ff10e1?auto=format&fit=crop&w=400&q=80",
+    detalles: "¡Intercambio exitoso realizado!",
+    otro: "Pedro León"
+  }
+];
+
+function estadoBadge(e) {
+  if (e === "pendiente") return `<span class="badge badge-pendiente mb-2">Pendiente</span>`;
+  if (e === "proceso") return `<span class="badge badge-proceso mb-2">En proceso</span>`;
+  return `<span class="badge badge-completado mb-2">Completado</span>`;
+}
+
+function renderIntercambios() {
+  const c = document.getElementById("listaIntercambios");
+  c.innerHTML = "";
+  intercambios.forEach((e,idx) => {
+    let acciones = `
+        <button class="btn btn-outline-primary btn-action me-1" onclick="verDetalles(${idx})">Ver detalles</button>
+    `;
+    if(e.estado === "pendiente") {
+      acciones += `
+        <button class="btn btn-outline-success btn-action me-1" onclick="confirmarAccion(${idx},'aceptar')">Aceptar</button>
+        <button class="btn btn-outline-danger btn-action me-1" onclick="confirmarAccion(${idx},'rechazar')">Rechazar</button>
+      `;
+    }
+    if(e.estado === "proceso") {
+      acciones += `
+        <button class="btn btn-outline-info btn-action me-1" onclick="enviarMsg(${idx})">Enviar mensaje</button>
+      `;
+    }
+    c.innerHTML += `
+      <div class="col-md-4">
+        <div class="card card-intercambio" id="cardInt-${idx}">
+          <img src="${e.imagen}" class="intercambio-img" alt="${e.nombre}">
+          <div class="card-body">
+            <h5 class="card-title">${e.nombre}</h5>
+            ${estadoBadge(e.estado)}
+            <p class="card-text">${e.detalles}</p>
+            <small class="text-secondary">Con: ${e.otro}</small>
+            <div class="d-flex mt-2">${acciones}</div>
+          </div>
+        </div>
+      </div>
+    `;
+  });
+}
+
+// Detalles de intercambio
+window.verDetalles = function(i) {
+  const e = intercambios[i];
+  const html = `
+    <img src="${e.imagen}" alt="${e.nombre}" class="img-fluid rounded mb-3">
+    <h6>${e.nombre}</h6>
+    ${estadoBadge(e.estado)}
+    <p>${e.detalles}</p>
+    <div><strong>Intercambiado con:</strong> ${e.otro}</div>
+  `;
+  document.getElementById('detallesIntBody').innerHTML = html;
+  new bootstrap.Modal(document.getElementById('modalDetallesInt')).show();
+};
+
+// Mensaje proceso
+window.enviarMsg = function(i) {
+  document.getElementById('mensajeIntercambio').value = '';
+  document.getElementById('msgEnviado').classList.add('d-none');
+  new bootstrap.Modal(document.getElementById('modalIntMsg')).show();
+};
+
+document.getElementById('msgForm').addEventListener('submit', function(e){
+  e.preventDefault();
+  document.getElementById('msgEnviado').classList.remove('d-none');
+  setTimeout(()=>{
+    bootstrap.Modal.getInstance(document.getElementById('modalIntMsg')).hide();
+  },1100);
+});
+
+// Confirmar acción (aceptar/rechazar)
+let accionIdx = null, accionTipo = null;
+window.confirmarAccion = function(idx,tipo) {
+  accionIdx = idx; accionTipo = tipo;
+  document.getElementById('modalConfirmLabel').innerText = tipo=="aceptar"?"Aceptar intercambio":"Rechazar intercambio";
+  document.getElementById('modalConfirmBody').innerText = tipo=="aceptar"
+    ? "¿Confirmas que quieres aceptar este intercambio?"
+    : "¿Estás seguro que deseas rechazar este intercambio?";
+  new bootstrap.Modal(document.getElementById('modalConfirm')).show();
+};
+document.getElementById('confirmBtn').addEventListener('click',function(){
+  if(accionIdx!==null){ 
+    // animación al eliminar/rechazar
+    const card = document.getElementById(`cardInt-${accionIdx}`);
+    if(card) { 
+      card.classList.add('fade-out');
+      setTimeout(function(){
+        if(accionTipo==="aceptar"){
+          intercambios[accionIdx].estado = "proceso";
+          intercambios[accionIdx].detalles = "Coordinando la entrega con la otra persona.";
+        } else {
+          intercambios.splice(accionIdx,1);
+        }
+        renderIntercambios();
+        accionIdx = null; accionTipo=null;
+        bootstrap.Modal.getInstance(document.getElementById('modalConfirm')).hide();
+      },300);
+    }
+  }
+});
+
+// Render inicial
+document.addEventListener("DOMContentLoaded",renderIntercambios);
+  </script>
+</body>
+</html>

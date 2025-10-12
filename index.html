@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>EcoSwap 🌱</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background: linear-gradient(135deg, #e0f7fa 0%, #c8e6c9 100%);
+      min-height: 100vh;
+    }
+    .hero-img {
+      max-width: 100%;
+      border-radius: 1rem;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.12);
+    }
+    .section-card {
+      background: #fff;
+      border-radius: 1rem;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+      padding: 2rem;
+      margin-bottom: 1.5rem;
+    }
+    .footer {
+      background: #388e3c;
+      color: #fff;
+      padding: 2rem 0 1rem 0;
+      margin-top: 3rem;
+    }
+    .footer a { color: #fff; text-decoration: underline; }
+    .navbar-brand {
+      font-weight: bold;
+      font-size: 1.5rem;
+      letter-spacing: 1px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">EcoSwap 🌱</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+            data-bs-target="#navbarNav" aria-controls="navbarNav"
+            aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="menuDropdown"
+             role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Menú
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="menuDropdown">
+            <li><a class="dropdown-item" href="publicarObjetos.html">Publicar objetos</a></li>
+            <li><a class="dropdown-item" href="misintercambios.html">Mis intercambios</a></li>
+            <li><a class="dropdown-item" href="marketplace.html">Coincidencias</a></li>
+          </ul>
+        </li>
+        <li class="nav-item"><a class="nav-link" href="contacto.html">Contacto</a></li>
+        <li class="nav-item"><a class="nav-link" href="registro.html">Crear Cuenta</a></li>
+        <li class="nav-item"><a class="nav-link" href="login.html">Iniciar Sesión</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+
+  <!-- Hero Section -->
+  <section class="container py-5">
+    <div class="row align-items-center">
+      <div class="col-md-6">
+        <h1 class="display-4 fw-bold mb-3">EcoSwap 🌱</h1>
+        <p class="lead mb-4">Conecta con personas de tu área que buscan un buen trato</p>
+        <a href="registro.html" class="btn btn-success btn-lg me-2">Crear Cuenta</a>
+        <a href="login.html" class="btn btn-outline-success btn-lg">Iniciar Sesión</a>
+      </div>
+      <div class="col-md-6 text-center">
+        <img src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=600&q=80" alt="Personas intercambiando productos" class="hero-img">
+      </div>
+    </div>
+  </section>
+
+  <!-- Secciones principales -->
+  <section class="container">
+    <div class="row">
+      <div class="col-md-4">
+        <div class="section-card text-center">
+          <h3>Sostenible</h3>
+          <p>Reduce el desperdicio dando nueva vida a objetos que ya no uses.</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="section-card text-center">
+          <h3>Comunidad</h3>
+          <p>Conecta con personas de tu área que buscan un buen trato.</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="section-card text-center">
+          <h3>Fácil</h3>
+          <p>Interfaz intuitiva para intercambiar objetos de forma sencilla.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- ...CÓDIGO ANTERIOR INALTERADO... -->
+
+
+
+<!-- NUEVAS SECCIONES SOLICITADAS -->
+<section class="container mt-5">
+  <div class="row">
+    <div class="col-md-4">
+      <div class="section-card text-center">
+        <img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=400&q=80"
+             alt="Comunidad Activa" class="img-fluid mb-3 rounded" style="height:180px;object-fit:cover;">
+        <h4>Comunidad Activa</h4>
+        <p>Miles de usuarios intercambiando</p>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="section-card text-center">
+        <img src="https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=400&q=80"
+             alt="Impacto Ambiental" class="img-fluid mb-3 rounded" style="height:180px;object-fit:cover;">
+        <h4>Impacto Ambiental</h4>
+        <p>Reduciendo el desperdicio</p>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="section-card text-center">
+        <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80"
+             alt="Intercambio Seguro" class="img-fluid mb-3 rounded" style="height:180px;object-fit:cover;">
+        <h4>Intercambio Seguro</h4>
+        <p>Plataforma confiable</p>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- ...RESTA DEL CÓDIGO (FOOTER, ETC.)... -->
+
+
+  <!-- Footer -->
+<footer class="footer mt-auto">
+  <div class="container text-center">
+    <div class="mb-2">
+      <a href="acerca.html">Acerca de</a> | <a href="contacto.html">Contacto</a> | <a href="politica.html">Política de uso</a>
+    </div>
+    <div>© 2025 EcoSwap. Intercambio sostenible para un futuro mejor.</div>
+  </div>
+</footer>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
