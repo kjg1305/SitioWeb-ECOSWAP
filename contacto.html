@@ -5,72 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Contacto | EcoSwap 🌱</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-  <style>
-    body {
-      background: linear-gradient(135deg, #e0f7fa 0%, #c8e6c9 100%);
-      min-height: 100vh;
-    }
-    .contact-card {
-      background: #fff;
-      border-radius: 1.2rem;
-      padding: 2.5rem 2rem;
-      box-shadow: 0 2px 16px rgba(0,0,0,0.08);
-      margin-top: 3rem;
-      margin-bottom: 3rem;
-      opacity: 0;
-      transform: translateY(24px);
-      animation: fadeBounce .7s .1s forwards;
-    }
-    @keyframes fadeBounce {
-      60% { opacity: 0.7; transform: scale(1.027) translateY(-5px);}
-      80% { opacity: 1;   transform: scale(0.98)  translateY(0);}
-      100%{ opacity: 1;   transform: scale(1)     translateY(0);}
-    }
-    .footer {
-      background: #388e3c;
-      color: #fff;
-      padding: 2rem 0 1rem 0;
-      margin-top: 3rem;
-    }
-    .footer a { color: #fff; text-decoration: underline; }
-    .navbar-brand { font-weight: bold; font-size: 1.5rem; letter-spacing: 1px;}
-    .btn-action { transition: transform 0.13s, filter 0.13s; }
-    .btn-action:active { transform: scale(0.95); filter: brightness(0.97); }
-    .is-valid { border-color: #198754; }
-    .is-invalid { border-color: #dc3545; }
-  </style>
+  <link rel="stylesheet" href="../CSS/contacto.css">
 </head>
-<body>
-  <!-- Navbar universal -->
-  <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
-    <div class="container">
-      <a class="navbar-brand" href="index.html">EcoSwap 🌱</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-              data-bs-target="#navbarNav" aria-controls="navbarNav"
-              aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="menuDropdown"
-               role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Menú
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="menuDropdown">
-              <li><a class="dropdown-item" href="publicarObjetos.html">Publicar objetos</a></li>
-              <li><a class="dropdown-item" href="misintercambios.html">Mis intercambios</a></li>
-              <li><a class="dropdown-item" href="marketplace.html">Coincidencias</a></li>
-            </ul>
-          </li>
-          <li class="nav-item"><a class="nav-link" href="contacto.html">Contacto</a></li>
-          <li class="nav-item"><a class="nav-link" href="registro.html">Crear Cuenta</a></li>
-          <li class="nav-item"><a class="nav-link" href="login.html">Iniciar Sesión</a></li>
-        </ul>
-      </div>
-    </div>
-  </nav>
-
+<body> 
   <!-- Formulario de contacto -->
   <section class="container">
     <div class="contact-card mx-auto col-md-8 col-lg-6">
@@ -101,44 +38,17 @@
     </div>
   </section>
 
-  <!-- Footer universal -->
-  <footer class="footer mt-auto">
-    <div class="container text-center">
-      <div class="mb-2">
-        <a href="acerca.html">Acerca de</a> | <a href="contacto.html">Contacto</a> | <a href="politica.html">Política de uso</a>
-      </div>
-      <div>© 2025 EcoSwap. Intercambio sostenible para un futuro mejor.</div>
-    </div>
-  </footer>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-  <script>
-    function validarEmail(email) {
-      return /\S+@\S+\.\S+/.test(email);
-    }
-    const form = document.getElementById("contactoForm");
-    form.addEventListener("submit", function(e){
-      e.preventDefault();
-      let valido = true;
-      const nombre = document.getElementById("nombre");
-      const email = document.getElementById("email");
-      const msj = document.getElementById("mensaje");
-      if(nombre.value.trim() === ""){ nombre.classList.add("is-invalid"); valido=false; }
-      else{ nombre.classList.remove("is-invalid"); nombre.classList.add("is-valid"); }
-      if(!validarEmail(email.value)){ email.classList.add("is-invalid"); valido=false; }
-      else { email.classList.remove("is-invalid"); email.classList.add("is-valid"); }
-      if(msj.value.trim() === ""){ msj.classList.add("is-invalid"); valido=false; }
-      else{ msj.classList.remove("is-invalid"); msj.classList.add("is-valid"); }
-      if(valido){
-        document.getElementById("msgEnviado").classList.remove("d-none");
-        form.reset();
-        ["nombre","email","mensaje"].forEach(id=>document.getElementById(id).classList.remove("is-valid"));
-      }
-    });
-    ["nombre","email","mensaje"].forEach(id=>{
-      document.getElementById(id).addEventListener('input',e=>{
-        e.target.classList.remove("is-invalid","is-valid");
-      });
-    });
-  </script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  fetch('../COMPONENTS/navbar.html')
+    .then(res => res.text())
+    .then(data => { document.body.insertAdjacentHTML('afterbegin', data); });
+  fetch('../COMPONENTS/footer.html')
+    .then(res => res.text())
+    .then(data => { document.body.insertAdjacentHTML('beforeend', data); });
+</script>
+<script src="../JS/contacto.js"></script>
+
+
 </body>
 </html>

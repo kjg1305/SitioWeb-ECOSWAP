@@ -1,0 +1,51 @@
+  body {
+      background: linear-gradient(135deg, #e0f7fa 0%, #c8e6c9 100%);
+      min-height: 100vh;
+    }
+    .footer {
+      background: #388e3c;
+      color: #fff;
+      padding: 2rem 0 1rem 0;
+      margin-top: 3rem;
+    }
+    .footer a { color: #fff; text-decoration: underline; }
+    .navbar-brand {
+      font-weight: bold;
+      font-size: 1.5rem;
+      letter-spacing: 1px;
+    }
+    .card-intercambio {
+      border-radius: 1rem;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+      margin-bottom: 2rem;
+      background: #c4fbdf;
+      transition: transform 0.12s, opacity 0.3s;
+      opacity: 1;
+      position: relative;
+    }
+    .card-intercambio:hover {
+      transform: translateY(-5px) scale(1.025);
+      box-shadow: 0 8px 24px rgba(0,150,136,0.14);
+    }
+    .intercambio-img {
+      object-fit: cover;
+      height: 350px;
+      border-radius: 1rem 1rem 0 0;
+      width: 100%;
+      transition: transform 0.25s;
+    }
+    .card-intercambio:hover .intercambio-img {
+      transform: scale(1.07);
+    }
+    .badge-pendiente { background: #ffd207; color: #463802; }
+    .badge-completado { background: #07ed13; color: #fff; }
+    .badge-proceso { background: #067aed; color: #fff; }
+    .btn-action { margin-right: 0.6rem; transition: transform 0.15s, filter 0.15s; }
+    .btn-action:active { transform: scale(0.94); filter: brightness(0.97); }
+    .section-title { font-weight: 600; letter-spacing: 1px; margin-bottom: 2rem; color: #388e3c; }
+    /* Modal bounce animation */
+    .modal .modal-dialog .modal-content { animation: bounceIn .28s; }
+    @keyframes bounceIn { 0%{transform:scale(0.8);}60%{transform:scale(1.07);}80%{transform:scale(0.98);}100%{transform:scale(1);} }
+    .fade-out { opacity: 0 !important; transition: opacity 0.30s; }
+    @media (max-width: 576px) { .intercambio-img { height: 140px; } }
+  

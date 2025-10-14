@@ -1,0 +1,28 @@
+ body {
+      background: linear-gradient(135deg, #e0f7fa 0%, #c8e6c9 100%);
+      min-height: 100vh;
+    }
+    .hero-img {
+      max-width: 100%;
+      border-radius: 1rem;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.12);
+    }
+    .section-card {
+      background: #adf3d3;
+      border-radius: 1rem;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+      padding: 2rem;
+      margin-bottom: 1.5rem;
+    }
+    .footer {
+      background: #388e3c;
+      color: #fff;
+      padding: 2rem 0 1rem 0;
+      margin-top: 3rem;
+    }
+    .footer a { color: #fff; text-decoration: underline; }
+    .navbar-brand {
+      font-weight: bold;
+      font-size: 1.5rem;
+      letter-spacing: 1px;
+    }
