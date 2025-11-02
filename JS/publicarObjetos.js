@@ -1,3 +1,6 @@
+window.addEventListener('DOMContentLoaded', () => {
+  verificarSesion();
+});
 
 let objetos = [
   {

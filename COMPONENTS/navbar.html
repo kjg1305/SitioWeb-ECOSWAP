@@ -1,12 +1,7 @@
- <!-- Navbar universal -->
 <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
   <div class="container">
     <a class="navbar-brand" href="index.html">EcoSwap 🌱</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-            data-bs-target="#navbarNav" aria-controls="navbarNav"
-            aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+    <button class="navbar-toggler" ...></button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ms-auto">
         <li class="nav-item dropdown">
@@ -21,9 +16,20 @@
           </ul>
         </li>
         <li class="nav-item"><a class="nav-link" href="contacto.html">Contacto</a></li>
-        <li class="nav-item"><a class="nav-link" href="registro.html">Crear Cuenta</a></li>
-        <li class="nav-item"><a class="nav-link" href="login.html">Iniciar Sesión</a></li>
+        <li class="nav-item" id="cerrarSesionItem" style="display:none;">
+          <button class="nav-link btn btn-link" style="color:inherit;" onclick="cerrarSesion()">Cerrar sesión</button>
+        </li>
+        <li class="nav-item" id="iniciarSesionItem">
+          <a class="nav-link" href="login.html">Iniciar Sesión</a>
+        </li>
+        <li class="nav-item" id="registroItem">
+          <a class="nav-link" href="registro.html">Crear Cuenta</a>
+        </li>
+        <li class="nav-item">
+          <span class="nav-link" id="usuarioNavbar"></span>
+        </li>
       </ul>
     </div>
   </div>
 </nav>
+

@@ -1,17 +1,18 @@
-
+// Validación básica de email
 function validarEmail(email) {
-  // Básico, puede mejorarse
   return /\S+@\S+\.\S+/.test(email);
 }
 const form = document.getElementById("registroForm");
+
 form.addEventListener("submit", function(e){
   e.preventDefault();
   let valido = true;
-  // Validación rápida
   const nombre = document.getElementById("nombre");
   const email = document.getElementById("email");
   const pass = document.getElementById("password");
   const conf = document.getElementById("confirm-password");
+
+  // Validaciones
   if(nombre.value.trim() === ""){ nombre.classList.add("is-invalid"); valido=false; }
   else{ nombre.classList.remove("is-invalid"); nombre.classList.add("is-valid"); }
   if(!validarEmail(email.value)){ email.classList.add("is-invalid"); valido=false; }
@@ -24,14 +25,23 @@ form.addEventListener("submit", function(e){
     valido = false;
   }
   else{ conf.classList.remove("is-invalid"); conf.classList.add("is-valid"); }
+
+  // Si es válido, guardar la sesión y el usuario
   if(valido){
+    localStorage.setItem('userSession', JSON.stringify({
+      usuario: nombre.value,
+      email: email.value,
+      autenticado: true
+    }));
     document.getElementById("registroOk").classList.remove("d-none");
     setTimeout(()=>{ window.location.href="index.html"; }, 1500);
   }
 });
+
 ["nombre","email","password","confirm-password"].forEach(id=>{
   document.getElementById(id).addEventListener('input',e=>{
-    e.target.classList.remove("is-invalid","is-valid");
+    document.getElementById(id).classList.remove("is-invalid","is-valid");
     if(id==="confirm-password") document.getElementById("msgConfirm").textContent = "Las contraseñas deben coincidir.";
   });
 });
+
